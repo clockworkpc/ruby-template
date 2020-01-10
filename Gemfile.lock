@@ -9,7 +9,7 @@ GIT
 PATH
   remote: .
   specs:
-    cpc-jekyll (0.1.0)
+    rubytemplate (0.1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -149,7 +149,7 @@ PLATFORMS
 DEPENDENCIES
   bundler (~> 2.0)
   cpc!
-  cpc-jekyll!
+  rubytemplate!
   facets
   guard
   guard-rspec

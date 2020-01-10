@@ -1,10 +1,10 @@
 lib = File.expand_path("lib", __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "cpc/jekyll/version"
+require "rubytemplate/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "cpc-jekyll"
-  spec.version       = Cpc::Jekyll::VERSION
+  spec.name          = "rubytemplate"
+  spec.version       = Rubytemplate::VERSION
   spec.authors       = ["Alexander Garber"]
   spec.email         = ["clockworkpc@gmail.com"]
 
