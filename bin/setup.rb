@@ -20,12 +20,15 @@ class ProjectRenamer
     path_ary = project_files
     path_ary.each do |path|
       if File.basename(path).match?(@old_spec_str)
-        binding.pry
         dirname = File.dirname(path)
-        new_basename = File.basename.sub(@old_spec_str, @new_spec_str)
+        new_basename = File.basename(path).sub(@old_spec_str, @new_spec_str)
         new_path = [dirname, new_basename].join('/')
-        File.rename(path, dirname, new_path)
         puts "#{path} => #{new_path}"
+        begin
+          File.rename(path, new_path)
+        rescue ExceptionName
+          binding.pry
+        end
       end
     end
   end
