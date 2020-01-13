@@ -7,13 +7,32 @@ class ProjectRenamer
     project_details_hsh = JSON.parse(File.read('bin/project_details.json'))
     @old_module_str = project_details_hsh["module"]
     @old_spec_str = project_details_hsh["spec"]
-    @new_module_str = 'Foobar'
-    @new_spec_str = 'foobar'
+    @new_module_str = 'Rubytemplate'
+    @new_spec_str = 'rubytemplate'
   end
 
   def project_files
-    grep_ary = `grep -rnw -e "#{@old_module_str}\\|#{@old_spec_str}"`.split("\n")
-    grep_ary.map {|x| x.split(':').first unless x.match?(".git")}.compact.uniq
+    # grep_ary = `grep -rnw -e "#{@old_module_str}\\|#{@old_spec_str}"`.split("\n")
+    # grep_ary.map {|x| x.split(':').first unless x.match?(".git")}.compact.uniq
+
+    Dir["**/**"].select {|n| File.file?(n)}.select {|f| File.read(f).match?(@old_spec_str)}
+  end
+
+  def project_folders
+    Dir["**/**"].select {|n| File.directory?(n) && n.match?(@old_spec_str) }
+  end
+
+  def rename_folders
+    path_ary = project_folders
+    binding.pry
+    path_ary.each do |path|
+      old_dirname = File.dirname(path)
+      new_dirname = old_dirname.gsub(@old_spec_str, @new_spec_str)
+      unless old_dirname.eql?(new_dirname)
+        FileUtils.mv(old_dirname, new_dirname)
+        puts "#{old_dirname} => #{new_dirname}"
+      end
+    end
   end
 
   def rename_files
@@ -29,18 +48,6 @@ class ProjectRenamer
         rescue ExceptionName
           binding.pry
         end
-      end
-    end
-  end
-
-  def rename_folders
-    path_ary = project_files
-    path_ary.each do |path|
-      old_dirname = File.dirname(path)
-      new_dirname = old_dirname.sub(@old_spec_str, @new_spec_str)
-      unless old_dirname.eql?(new_dirname)
-        FileUtils.mv(old_dirname, new_dirname)
-        puts "#{old_dirname} => #{new_dirname}"
       end
     end
   end
@@ -61,7 +68,7 @@ class ProjectRenamer
 
   def rename_project
     rename_files
-    # rename_folders
+    rename_folders
     # rename_module_and_spec
   end
 end
