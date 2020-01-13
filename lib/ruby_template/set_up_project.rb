@@ -1,4 +1,4 @@
-module Rubytemplate
+module RubyTemplate
   class SetUpProject
     # def initialize(spec_name_str, module_name_str, spec_homepage_str)
     #   @spec_name = spec_name_str
