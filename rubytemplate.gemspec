@@ -8,16 +8,16 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Alexander Garber"]
   spec.email         = ["clockworkpc@gmail.com"]
 
-  spec.summary       = "Jekyll enhanced by CPC Ruby"
-  spec.description   = "A Jekyll gem supported by useful Ruby code from the CPC class"
-  spec.homepage      = "http://www.clockworkpc.com.au"
+  spec.summary       = "Rubytemplate summary"
+  spec.description   = "Rubytemplate description"
+  spec.homepage      = "http://www.foobar.com"
   spec.license       = "MIT"
 
   spec.metadata["allowed_push_host"] = "http://mygemserver.com"
 
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "http://www.clockworkpc.com.au"
-  spec.metadata["changelog_uri"] = "http://www.clockworkpc.com.au"
+  spec.metadata["source_code_uri"] = "http://www.rubytemplate.com"
+  spec.metadata["changelog_uri"] = "http://www.rubytemplate.com"
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.

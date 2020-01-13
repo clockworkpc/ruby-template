@@ -1,6 +1,9 @@
 require 'bundler/setup'
+require 'facets'
+require 'pry'
 require 'time'
-# require 'cpc/jekyll'
+
+require 'cpc/codewars/drying_potatoes'
 
 require 'cpc/util/api_util'
 require 'cpc/util/case_util'
@@ -13,8 +16,8 @@ require 'cpc/util/string_util'
 require 'cpc/util/time_stamp_util'
 require 'cpc/util/util'
 
-require 'cpc/codewars/drying_potatoes'
-require 'facets'
+require 'rubytemplate/set_up_project'
+
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
