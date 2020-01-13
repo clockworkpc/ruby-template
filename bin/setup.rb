@@ -16,7 +16,32 @@ class ProjectRenamer
     grep_ary.map {|x| x.split(':').first unless x.match?(".git")}.compact.uniq
   end
 
-  def rename_module_and_spec(path_ary)
+  def rename_folders
+    path_ary = project_files
+    path_ary.each do |path|
+      old_dirname = File.dirname(path)
+      new_dirname = old_dirname.sub(@old_spec_str, @new_spec_str)
+      unless old_dirname.eql?(new_dirname)
+        FileUtils.mv(old_dirname, new_dirname)
+      end
+    end
+  end
+
+  def rename_files(path_ary)
+    path_ary = project_files
+    path_ary.each do |path|
+      if File.basename(path).match?(@old_spec_str)
+        binding.pry
+        dirname = File.dirname(path)
+        new_basename = File.basename.sub(@old_spec_str, @new_spec_str)
+        new_path = [dirname, new_basename].join('/')
+        puts "New path: #{new_path}"
+        File.rename(path, dirname, new_path)
+      end
+    end
+  end
+
+  def rename_module_and_spec
     path_ary = project_files
     path_ary.each do |path|
       r = File.read(path)
@@ -29,18 +54,6 @@ class ProjectRenamer
     end
   end
 
-  def rename_files(path_ary)
-    path_ary.each do |path|
-      if File.basename(path).match?(@old_spec_str)
-        binding.pry
-        dirname = File.dirname(f)
-        new_basename = File.basename.sub(@old_spec_str, @new_spec_str)
-        new_path = [dirname, new_basename].join('/')
-        puts "New path: #{new_path}"
-        File.rename(path, dirname, new_path)
-      end
-    end
-  end
 
   def rename_project
     path_ary_01 = project_files
