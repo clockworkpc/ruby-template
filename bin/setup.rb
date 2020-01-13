@@ -16,7 +16,7 @@ class ProjectRenamer
     grep_ary.map {|x| x.split(':').first unless x.match?(".git")}.compact.uniq
   end
 
-  def rename_files(path_ary)
+  def rename_files
     path_ary = project_files
     path_ary.each do |path|
       if File.basename(path).match?(@old_spec_str)
