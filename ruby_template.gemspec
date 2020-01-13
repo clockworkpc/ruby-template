@@ -1,23 +1,23 @@
 lib = File.expand_path("lib", __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "rubytemplate/version"
+require "ruby_template/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "rubytemplate"
-  spec.version       = Rubytemplate::VERSION
+  spec.name          = "ruby_template"
+  spec.version       = RubyTemplate::VERSION
   spec.authors       = ["Alexander Garber"]
   spec.email         = ["clockworkpc@gmail.com"]
 
-  spec.summary       = "Rubytemplate summary"
-  spec.description   = "Rubytemplate description"
-  spec.homepage      = "http://www.foobar.com"
+  spec.summary       = "RubyTemplate summary"
+  spec.description   = "RubyTemplate description"
+  spec.homepage      = "http://www.ruby-template.com"
   spec.license       = "MIT"
 
   spec.metadata["allowed_push_host"] = "http://mygemserver.com"
 
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "http://www.rubytemplate.com"
-  spec.metadata["changelog_uri"] = "http://www.rubytemplate.com"
+  spec.metadata["source_code_uri"] = "http://www.ruby-template.com"
+  spec.metadata["changelog_uri"] = "http://www.ruby-template.com"
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
