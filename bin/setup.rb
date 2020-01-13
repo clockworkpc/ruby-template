@@ -2,11 +2,14 @@ require 'pry'
 require 'fileutils'
 
 class ProjectRenamer
-  project_details_hsh = JSON.parse(File.read('bin/project_details.json'))
-  @old_module_str = project_details_hsh["module"]
-  @old_spec_str = project_details_hsh["spec"]
-  @new_module_str = 'Foobar'
-  @new_spec_str = 'foobar'
+
+  def initialize
+    project_details_hsh = JSON.parse(File.read('bin/project_details.json'))
+    @old_module_str = project_details_hsh["module"]
+    @old_spec_str = project_details_hsh["spec"]
+    @new_module_str = 'Foobar'
+    @new_spec_str = 'foobar'
+  end
 
   def project_files
     grep_ary = `grep -rnw -e "#{@old_module_str}\\|#{@old_spec_str}"`.split("\n")
@@ -28,7 +31,8 @@ class ProjectRenamer
 
   def rename_files(path_ary)
     path_ary.each do |path|
-      if File.basename.match?(@old_spec_str)
+      if File.basename(path).match?(@old_spec_str)
+        binding.pry
         dirname = File.dirname(f)
         new_basename = File.basename.sub(@old_spec_str, @new_spec_str)
         new_path = [dirname, new_basename].join('/')
