@@ -16,18 +16,6 @@ class ProjectRenamer
     grep_ary.map {|x| x.split(':').first unless x.match?(".git")}.compact.uniq
   end
 
-  def rename_folders
-    path_ary = project_files
-    path_ary.each do |path|
-      old_dirname = File.dirname(path)
-      new_dirname = old_dirname.sub(@old_spec_str, @new_spec_str)
-      unless old_dirname.eql?(new_dirname)
-        FileUtils.mv(old_dirname, new_dirname)
-        puts "#{old_dirname} => #{new_dirname}"
-      end
-    end
-  end
-
   def rename_files(path_ary)
     path_ary = project_files
     path_ary.each do |path|
@@ -38,6 +26,18 @@ class ProjectRenamer
         new_path = [dirname, new_basename].join('/')
         File.rename(path, dirname, new_path)
         puts "#{path} => #{new_path}"
+      end
+    end
+  end
+
+  def rename_folders
+    path_ary = project_files
+    path_ary.each do |path|
+      old_dirname = File.dirname(path)
+      new_dirname = old_dirname.sub(@old_spec_str, @new_spec_str)
+      unless old_dirname.eql?(new_dirname)
+        FileUtils.mv(old_dirname, new_dirname)
+        puts "#{old_dirname} => #{new_dirname}"
       end
     end
   end
@@ -57,9 +57,9 @@ class ProjectRenamer
 
 
   def rename_project
-    rename_folders
     rename_files
-    rename_module_and_spec
+    # rename_folders
+    # rename_module_and_spec
   end
 end
 
