@@ -23,6 +23,7 @@ class ProjectRenamer
       new_dirname = old_dirname.sub(@old_spec_str, @new_spec_str)
       unless old_dirname.eql?(new_dirname)
         FileUtils.mv(old_dirname, new_dirname)
+        puts "#{old_dirname} => #{new_dirname}"
       end
     end
   end
@@ -35,8 +36,8 @@ class ProjectRenamer
         dirname = File.dirname(path)
         new_basename = File.basename.sub(@old_spec_str, @new_spec_str)
         new_path = [dirname, new_basename].join('/')
-        puts "New path: #{new_path}"
         File.rename(path, dirname, new_path)
+        puts "#{path} => #{new_path}"
       end
     end
   end
@@ -56,11 +57,9 @@ class ProjectRenamer
 
 
   def rename_project
-    path_ary_01 = project_files
-    rename_files(path_ary_01)
-
-    path_ary_02 = project_files
-    rename_module_and_spec(path_ary_02)
+    rename_folders
+    rename_files
+    rename_module_and_spec
   end
 end
 
