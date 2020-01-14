@@ -16,7 +16,6 @@ class ProjectRenamer
     grep_ary = `grep -rnw -e "#{@old_module_str}\\|#{@old_spec_str}"`.split("\n")
     grep = grep_ary.map {|x| x.split(':').first unless x.match?(".git")}.compact.uniq
     grep.reject {|k| File.basename(k).eql?("project_details.json")}
-    # Dir["**/**"].select {|n| File.file?(n)}.select {|f| File.read(f).match?(@old_spec_str)}
   end
 
   def find_spec_basenames
