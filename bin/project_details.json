@@ -1,4 +1,10 @@
 {
-  "module": "RubyTemplate",
-  "spec": "ruby_template"
+  "current": {
+    "module": "RubyTemplate",
+    "spec": "ruby_template"
+  },
+  "new": {
+    "module": "RubyTemplate",
+    "spec": "ruby_template"
+  }
 }
