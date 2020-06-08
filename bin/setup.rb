@@ -1,7 +1,6 @@
-# frozen_string_literal: true
-
-require 'pry'
 require 'fileutils'
+require 'json'
+require 'pry'
 
 class ProjectRenamer
   def initialize

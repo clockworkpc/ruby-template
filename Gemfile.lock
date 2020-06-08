@@ -92,13 +92,13 @@ DEPENDENCIES
   guard-rspec
   guard-rubocop
   guard-shell
+  ruby_template!
   rake
   rb-fsevent (~> 0.9)
   rspec
   rubocop
   rubocop-performance
   rubocop-rspec
-  ruby_template!
 
 BUNDLED WITH
    2.1.4
